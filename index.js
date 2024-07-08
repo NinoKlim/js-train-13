@@ -12,9 +12,9 @@ function complexConvert(data) {
     let value = obj[key];
 
     if (typeof value === "number") {
-      obj[key] = value + 1;
+      objFin[key] = value + 1;
     } else {
-      obj[key] = value;
+      objFin[key] = value;
     }
   });
   // Створюємо новий порожній об'єкт для збереження результату.
@@ -24,7 +24,7 @@ function complexConvert(data) {
   // Якщо значення не є числом, просто копіюємо його у новий об'єкт без змін.
   // Повертаємо оброблений об'єкт.
 
-  return JSON.stringify(obj);
+  return JSON.stringify(objFin);
 }
 
 console.log("Завдання: 1 ==============================");
@@ -482,10 +482,10 @@ function sortUrlParams(url) {
   // Отримуємо масив з ключами і значеннями параметрів за допомогою методу 'entries'.
   let arr = Array.from(mySearchParams.searchParams.entries());
   // Сортуємо масив за ключами у порядку зростання.
-  const sortUrl = arr.sort();
+  const sortUrl = arr.sort((a, b) => a[0] - b[0]);
   // Очищуємо пошукові параметри URL.
-  mySearchParams.searchParams.delete("param1", "value1");
-  mySearchParams.searchParams.delete("param2", "value2");
+  mySearchParams.search = "";
+  console.log(mySearchParams);
   // Додаємо відсортовані параметри до URL.
   for (const [key, value] of sortUrl) {
     mySearchParams.searchParams.append(key, value);
